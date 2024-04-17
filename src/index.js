@@ -13,5 +13,5 @@ app.listen(3000, async () => {
   mongoose.set(`strictQuery`, true);
   await mongoose.connect(`mongodb+srv://kraiwithkamchu:HKtQzuOWqvt7GYdl@cluster0.xbzxqpb.mongodb.net/`);
 
-  console.log(`http://localhost:3000`);
+  console.log(`http://localhost:3000/`);
 });

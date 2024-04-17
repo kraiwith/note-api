@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { createNote, deleteNoteById, getNoteById, getNotes, updateNoteById } from './note.service';
+import { pagination } from '../../functions/pagination';
 
 export const router = Router();
 
@@ -50,6 +51,20 @@ router.get('/notes', async (request, response) => {
   try {
     const list = await getNotes(request.query);
     response.send(list);
+  } catch (error) {
+    response.status(500).send(error);
+  }
+});
+
+router.get('/notes/pagination', async (request, response) => {
+  try {
+    const noteItems = await getNotes(request.query);
+    const pageData = pagination({
+      query: request.query,
+      items: noteItems,
+    });
+
+    response.send(pageData);
   } catch (error) {
     response.status(500).send(error);
   }
